@@ -1,0 +1,516 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>T2M-GPT</title>
+  <meta name="description" content="Project page for T2M-GPT: Generating Human Motion from Textual Descriptions with Discrete Representations">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <!--Facebook preview-->
+  <meta property="og:image" content="https://xishen0220.github.io/T2M-GPT/teaser.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="400">
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://xishen0220.github.io/T2M-GPT/"/>
+  <meta property="og:title" content="T2M-GPT"/>
+  <meta property="og:description" content="Project page for T2M-GPT: Generating Human Motion from Textual Descriptions with Discrete Representations."/>
+
+  <!--Twitter preview-->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="T2M-GPT" />
+  <meta name="twitter:description" content="Project page for T2M-GPT: Generating Human Motion from Textual Descriptions with Discrete Representations."/>
+  <meta name="twitter:image" content="https://xishen0220.github.io/T2M-GPT/teaser.png">
+
+  <!--Style-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+
+
+  <h3>Visual Results</h3>
+  <hr/>
+
+  <p>
+    <u><a href="https://ericguo5513.github.io/text-to-motion/">[1] Guo et al. Generating diverse and natural 3d human motions from text. CVPR, 2022.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://guytevet.github.io/mdm-page/">[2] Tevet et al. Human motion diffusion model. arXiv, 2022.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html">[3] Zhang et al. Motiondiffuse: Text-driven human motion generation with diffusion model. arXiv, 2022.
+    </a></u>
+  </p>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4><font color="red">Text Prompting: a man steps forward and does a handstand.</font></h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u>Ours</u></h4>
+    </div>
+    
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-1">
+    </div>
+  <div class="col-xs-2">
+    <img src="Ours/002103_gt.gif" alt="002103_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-2">
+    <img src="T2M_render/002103_pred.gif" alt="002103_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-2">
+    <img src="MDM/002103_pred.gif" alt="002103_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+    10px">
+  </div>
+  <div class="col-xs-2">
+    <img src="Motiondiffusion/002103_pred.gif" alt="002103_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-2">
+    <img src="Ours/002103_pred.gif" alt="002103_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+    10px">
+  </div>
+  </div>  
+  
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4><font color="red">Text Prompting: A man rises from the ground, walks in a circle and sits back down on the ground.</font></h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u>Ours</u></h4>
+    </div>
+    
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <img src="Ours/000066_gt.gif" alt="000066_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+    </div>
+    <div class="col-xs-2">
+      <img src="T2M_render/000066_pred.gif" alt="000066_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+    </div>
+    <div class="col-xs-2">
+      <img src="MDM/000066_pred.gif" alt="000066_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+    </div>
+    <div class="col-xs-2">
+      <img src="Motiondiffusion/000066_pred.gif" alt="000066_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+    </div>
+    <div class="col-xs-2">
+      <img src="Ours/000066_pred.gif" alt="000066_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4><font color="red">Text Prompting: a person jogs in place, slowly at first, then increases speed. they then back up and squat down.</font></h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+    </div>
+    <div class="col-xs-2">
+      <h4><u>Ours</u></h4>
+    </div>
+    
+  </div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-2">
+    <img src="Ours/004455_gt.gif" alt="004455_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-2">
+    <img src="T2M_render/004455_pred.gif" alt="004455_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-2">
+    <img src="MDM/004455_pred.gif" alt="004455_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+    10px">
+  </div>
+  <div class="col-xs-2">
+    <img src="Motiondiffusion/004455_pred.gif" alt="004455_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-2">
+    <img src="Ours/004455_pred.gif" alt="004455_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+    10px">
+  </div>
+</div>
+
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  <h4><font color="red">Text Prompting: a man starts off in an up right position with botg arms extended out by his sides, he then brings his arms down to his body and claps his hands together. after this he wals down amd the the left where he proceeds to sit on a seat</font></h4>
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-2">
+    <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u>Ours</u></h4>
+  </div>
+  
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+<div class="col-xs-2">
+  <img src="Ours/004742_gt.gif" alt="004742_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="T2M_render/004742_pred.gif" alt="004742_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="MDM/004742_pred.gif" alt="004742_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+<div class="col-xs-2">
+  <img src="Motiondiffusion/004742_pred.gif" alt="004742_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="Ours/004742_pred.gif" alt="004742_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+</div>
+
+
+
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  <h4><font color="red">Text Prompting: a person puts their hands together, leans forwards slightly then swings the arms from right to left</font></h4>
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-2">
+    <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u>Ours</u></h4>
+  </div>
+  
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+<div class="col-xs-2">
+  <img src="Ours/005955_gt.gif" alt="005955_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="T2M_render/005955_pred.gif" alt="005955_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="MDM/005955_pred.gif" alt="005955_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+<div class="col-xs-2">
+  <img src="Motiondiffusion/005955_pred.gif" alt="005955_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="Ours/005955_pred.gif" alt="005955_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+</div> 
+
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  <h4><font color="red">Text Prompting: someone appears to be stretching they turn their upper body in a counter clockwise direction and then leans upper body from side to side</font></h4>
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-2">
+    <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u>Ours</u></h4>
+  </div>
+  
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+<div class="col-xs-2">
+  <img src="Ours/007708_gt.gif" alt="007708_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="T2M_render/007708_pred.gif" alt="007708_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="MDM/007708_pred.gif" alt="007708_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+<div class="col-xs-2">
+  <img src="Motiondiffusion/007708_pred.gif" alt="007708_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="Ours/007708_pred.gif" alt="007708_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+</div> 
+
+
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  <h4><font color="red">Text Prompting: moving sideways then stopping.</font></h4>
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-2">
+    <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u>Ours</u></h4>
+  </div>
+  
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+<div class="col-xs-2">
+  <img src="Ours/010445_gt.gif" alt="010445_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="T2M_render/010445_pred.gif" alt="010445_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="MDM/010445_pred.gif" alt="010445_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+<div class="col-xs-2">
+  <img src="Motiondiffusion/010445_pred.gif" alt="010445_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="Ours/010445_pred.gif" alt="010445_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+</div> 
+
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  <h4><font color="red">Text Prompting: a person uses their left knee to get up from the floor.</font></h4>
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-2">
+    <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u>Ours</u></h4>
+  </div>
+  
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+<div class="col-xs-2">
+  <img src="Ours/011897_gt.gif" alt="011897_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="T2M_render/011897_pred.gif" alt="011897_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="MDM/011897_pred.gif" alt="011897_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+<div class="col-xs-2">
+  <img src="Motiondiffusion/011897_pred.gif" alt="011897_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="Ours/011897_pred.gif" alt="011897_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+</div> 
+
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  <h4><font color="red">Text Prompting: a man is practicing the waltz with a partner</font></h4>
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-2">
+    <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u>Ours</u></h4>
+  </div>
+  
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+<div class="col-xs-2">
+  <img src="Ours/012529_gt.gif" alt="012529_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="T2M_render/012529_pred.gif" alt="012529_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="MDM/012529_pred.gif" alt="012529_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+<div class="col-xs-2">
+  <img src="Motiondiffusion/012529_pred.gif" alt="012529_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="Ours/012529_pred.gif" alt="012529_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+</div> 
+
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  <h4><font color="red">Text Prompting: a person is playing jumprope.</font></h4>
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-2">
+    <h4 style="margin-right: 20%"><u>Ground-Truth</u></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://ericguo5513.github.io/text-to-motion/"><nobr>T2M</nobr> </a></u><sup>[1]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://guytevet.github.io/mdm-page/"><nobr>MDM</nobr> </a></u><sup>[2]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html"><nobr>MotionDiffuse</nobr> </a></u><sup>[3]</sup></h4>
+  </div>
+  <div class="col-xs-2">
+    <h4><u>Ours</u></h4>
+  </div>
+  
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+<div class="col-xs-2">
+  <img src="Ours/013568_gt.gif" alt="013568_gt.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="T2M_render/013568_pred.gif" alt="013568_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="MDM/013568_pred.gif" alt="013568_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+<div class="col-xs-2">
+  <img src="Motiondiffusion/013568_pred.gif" alt="013568_pred.gif" class="text-center" style="width: 100%; max-width: 900px">
+</div>
+<div class="col-xs-2">
+  <img src="Ours/013568_pred.gif" alt="013568_pred.gif" class="text-center" style="width: 100%; max-width: 900px; margin-top:
+  10px">
+</div>
+</div> 
+
+
+  
+</div>
+
+<div class="container" style="padding-top:3rem; padding-bottom:3rem">
+  <p style="text-align:center">
+  &#169; This webpage was in part inspired from this
+  <a href="https://github.com/monniert/project-webpage">template</a>.
+  </p>
+</div>
+
+</body>
+</html> 
