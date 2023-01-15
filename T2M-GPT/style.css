@@ -19,6 +19,13 @@ hr {
   border-top: 3px solid #800084;
 }
 
+hr.new {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 3px dotted #800084;
+}
+
 p {
   text-align: justify;
 }
