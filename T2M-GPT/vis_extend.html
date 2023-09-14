@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>T2M-GPT+</title>
+  <meta name="description"
+    content="Project page for T2M-GPT+: Text-to-Motion Generation with Discrete Representations and Large Language Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <!--Style-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <h3>Visual Results</h3>
+  <hr />
+
+  <p>
+    <u><a href="https://mingyuan-zhang.github.io/projects/MotionDiffuse.html">[1] Zhang et al. Motiondiffuse:
+        Text-driven human motion generation with diffusion model. arXiv, 2022.
+      </a></u>
+  </p>
+  <p>
+    <u><a href="https://mael-zys.github.io/T2M-GPT/">[2] Zhang et al. T2M-GPT: Generating Human Motion from
+        Textual Descriptions with Discrete Representations. CVPR, 2023.
+      </a></u>
+  </p>
+
+  <!-- Part 2 -->
+
+  
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: a man walks forward slowly, then turns around.</font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/004320_pred.gif" alt="004320_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/004320_pred.gif" alt="004320_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+    
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/004320_pred.gif" alt="004320_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/004320_pred.gif" alt="004320_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/gt/004320_gt.gif" alt="004320_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+
+  <hr class="new">
+
+
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: person appears to be running in straight line then jumps over something and continues running.</font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/004602_pred.gif" alt="004602_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/004602_pred.gif" alt="004602_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/004602_pred.gif" alt="004602_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/004602_pred.gif" alt="004602_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/gt/004602_gt.gif" alt="004602_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+
+  <hr class="new">
+
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: a person marches in place while raising its arms, then it takes a break, then it
+        starts running in place with raised arms.</font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/000363_pred.gif" alt="000363_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/000363_pred.gif" alt="000363_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+    10px">
+    </div>
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+
+    
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/000363_pred.gif" alt="000363_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/000363_pred.gif" alt="000363_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+    10px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/gt/000363_gt.gif" alt="000363_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+
+  <hr class="new">
+
+  <!-- Part 3 -->
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: a person does jumping jacks.</font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/000551_pred.gif" alt="000551_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/000551_pred.gif" alt="000551_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+    10px">
+    </div>
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/000551_pred.gif" alt="000551_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/000551_pred.gif" alt="000551_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+    10px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/gt/000551_gt.gif" alt="000551_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+
+  <hr class="new">
+
+  <!-- Part 4 -->
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: a person walks in a right bend direction.</font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/001448_pred.gif" alt="001448_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/001448_pred.gif" alt="001448_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/001448_pred.gif" alt="001448_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/001448_pred.gif" alt="001448_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/gt/001448_gt.gif" alt="001448_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+
+  <hr class="new">
+
+  <!-- Part 5 -->
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: a person walks straight forward, turns, then runs back.</font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/001617_pred.gif" alt="001617_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/001617_pred.gif" alt="001617_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/001617_pred.gif" alt="001617_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/001617_pred.gif" alt="001617_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/gt/001617_gt.gif" alt="001617_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+
+  <hr class="new">
+
+
+  <!-- Part 7 -->
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: a person carries something it their hands and then uses their right hand to
+        throw it.</font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/001752_pred.gif" alt="001752_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/001752_pred.gif" alt="001752_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+    
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/001752_pred.gif" alt="001752_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/001752_pred.gif" alt="001752_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/gt/001752_gt.gif" alt="001752_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+
+  <hr class="new">
+
+  <!-- Part 8 -->
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: hands in fighting position while the left foot kicks aggressively up and over.
+      </font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/001840_pred.gif" alt="001840_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/001840_pred.gif" alt="001840_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/001840_pred.gif" alt="001840_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/001840_pred.gif" alt="001840_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/gt/001840_gt.gif" alt="001840_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+
+  <hr class="new">
+
+  <!-- text on the first line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>
+      <font color="red">Text Prompting: someone waits a moment and jumps to the right.</font>
+    </h4>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>
+        <nobr>MotionDiffuse</nobr> <sup>[1]</sup>
+      </h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>
+        <nobr>T2M-GPT</nobr> <sup>[2]</sup>
+      </h4>
+    </div>
+  </div>
+  <!-- the gif in the first line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <img src="gifs/motiondiffuse/009654_pred.gif" alt="009654_pred.gif" class="text-center"
+        style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt/009654_pred.gif" alt="009654_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+  </div>
+  <!-- text on the second line of this section  -->
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GPT+)</h4>
+    </div>
+
+    <div class="col-xs-4">
+      <h4>Ours (T2M-GIT+)</h4>
+    </div>
+
+    
+    <div class="col-xs-4">
+      <h4>Ground-Truth</h4>
+    </div>
+  </div>
+  <!-- the gif in the second line of this section -->
+  <div class="row" style="text-align: center">
+    <div class="col-xs-4">
+      <img src="gifs/t2m-gpt+/009654_pred.gif" alt="009654_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/t2m-git+/009654_pred.gif" alt="009654_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+    </div>
+
+    <div class="col-xs-4">
+      <img src="gifs/gt/009654_gt.gif" alt="009654_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+    </div>
+  </div>
+ 
+
+  <hr class="new">
+
+  <!-- text on the first line of this section  -->
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  <h4><font color="red">Text Prompting: the person is running over a vault.</font></h4>
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-2">
+  </div>
+  <div class="col-xs-4">
+    <h4><nobr>MotionDiffuse</nobr> <sup>[1]</sup></h4>
+  </div>
+
+  <div class="col-xs-4">
+    <h4><nobr>T2M-GPT</nobr> <sup>[2]</sup></h4>
+  </div>
+</div>
+<!-- the gif in the first line of this section -->
+<div class="row" style="text-align: center">
+  <div class="col-xs-2">
+  </div>
+<div class="col-xs-4">
+  <img src="gifs/motiondiffuse/M009924_pred.gif" alt="M009924_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+</div>
+
+<div class="col-xs-4">
+  <img src="gifs/t2m-gpt/M009924_pred.gif" alt="M009924_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+</div>
+
+</div>  
+<!-- text on the second line of this section  -->
+<div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+</div>
+<div class="row" style="text-align: center">
+  <div class="col-xs-4">
+    <h4>Ours (T2M-GPT+)</h4>
+  </div>
+
+  <div class="col-xs-4">
+    <h4>Ours (T2M-GIT+)</h4>
+  </div>
+  <div class="col-xs-4">
+    <h4>Ground-Truth</h4>
+</div>
+</div>
+<!-- the gif in the second line of this section -->
+<div class="row" style="text-align: center">
+<div class="col-xs-4">
+  <img src="gifs/t2m-gpt+/M009924_pred.gif" alt="M009924_gt.gif" class="text-center" style="width: 60%; max-width: 900px">
+</div>
+
+<div class="col-xs-4">
+  <img src="gifs/t2m-git+/M009924_pred.gif" alt="M009924_pred.gif" class="text-center" style="width: 60%; max-width: 900px; margin-top:
+  10px">
+</div>
+
+<div class="col-xs-4">
+  <img src="gifs/gt/M009924_gt.gif" alt="M009924_pred.gif" class="text-center" style="width: 60%; max-width: 900px">
+</div>
+</div> 
+
+<hr class="new">
+
+
+<div class="container" style="padding-top:3rem; padding-bottom:3rem">
+  <p style="text-align:center">
+    &#169; This webpage was in part inspired from this
+    <a href="https://github.com/monniert/project-webpage">template</a>.
+  </p>
+</div>
+
+</body>
+
+</html>
