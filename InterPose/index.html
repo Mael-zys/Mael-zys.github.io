@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>InterPose</title>
+  <meta name="description" content="Project page for InterPose: Learning to Generate Human-Object Interactions from Large-Scale Web Videos">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <!--Facebook preview-->
+  <meta property="og:image" content="https://mael-zys.github.io/InterPose/resrc/teaser.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="400">
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mael-zys.github.io/InterPose/"/>
+  <meta property="og:title" content="InterPose"/>
+  <meta property="og:description" content="Project page for InterPose: Learning to Generate Human-Object Interactions from Large-Scale Web Videos."/>
+
+  <!--Twitter preview-->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="InterPose" />
+  <meta name="twitter:description" content="Project page for InterPose: Learning to Generate Human-Object Interactions from Large-Scale Web Videos."/>
+  <meta name="twitter:image" content="https://mael-zys.github.io/InterPose/resrc/teaser.png">
+
+  <!--Style-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container" style="text-align:center; padding:2rem 15px">
+  <div class="row" style="text-align:center">
+    <h1>InterPose: Learning to Generate Human-Object Interactions</h1>
+    <h1>from Large-Scale Web Videos</h1>
+    <h4>arXiv 2025</h4>
+  </div>
+  <div class="row" style="text-align:center">
+    <div class="col-xs-0 col-md-2"></div>
+    <div class="col-xs-14 col-md-14">
+      <h4>
+        <a href="https://Mael-zys.github.io/"><nobr>Yangsong Zhang</nobr><sup>1</sup></a> &emsp;
+        <nobr>Abdul Ahad Butt</nobr><sup>1</sup> </a>&emsp;
+        <a href="https://gulvarol.github.io/"><nobr>Gül Varol</nobr><sup>2</sup></a>&emsp;
+        <a href="https://mbzuai.ac.ae/study/faculty/ivan-laptev/"><nobr>Ivan Laptev</nobr><sup>1</sup> </a>&emsp;
+      </h4>
+      <sup>1</sup> Mohamed Bin Zayed University of Artificial Intelligence (MBZUAI) &emsp;
+      <sup>2</sup> LIGM, École des Ponts, IP Paris, Univ Gustave Eiffel, CNRS &emsp;
+    </div>
+    
+  </div>
+</div>
+
+<div class="container" style="text-align:center; padding:1rem">
+  <img src="resrc/teaser_final.jpg" alt="teaser_final.jpg" class="text-center" style="width: 100%; max-width: 1100px">
+  <h3 style="text-align:center; padding-top:1rem">
+    <a class="label label-info" href="https://mael-zys.github.io/InterPose/">Paper</a>
+    <!-- <a class="label label-info" href="https://mael-zys.github.io/InterPose">GitHub</a>
+    <a class="label label-info" href="https://mael-zys.github.io/InterPose">Data</a> -->
+  </h3>
+</div>
+
+<div class="container">
+  <h3>Abstract</h3>
+  <hr/>
+  <p>
+  Human motion generation has shown great advances thanks to the recent diffusion models trained on large-scale motion capture data. Most of existing works, however, currently target animation of isolated people in empty scenes. Meanwhile, synthesizing realistic human–object interactions in complex 3D scenes remains a critical challenge in computer graphics and robotics. One obstacle towards generating versatile high-fidelity human-object interactions is the lack of large-scale datasets with diverse object manipulations. Indeed, existing motion capture data is typically restricted to single people and manipulations of limited sets of objects. To address this issue, we propose an automatic motion extraction pipeline and use it to collect interaction-rich human motions. Our new dataset InterPose contains 73.8K sequences of 3D human motions and corresponding text captions automatically obtained from 45.8K videos with human-object interactions. We perform extensive experiments and demonstrate InterPose to bring significant improvements to state-of-the-art methods for human motion generation. Moreover, using InterPose we develop an LLM-based agent enabling zero-shot animation of people interacting with diverse objects and scenes.  
+  </p>
+
+  <h3>Video</h3>
+  <hr/>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="800" preload="auto">
+				<source src="resrc/interpose.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <h3>Data Collection</h3>
+  <hr/>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-12">
+      <img src="resrc/data_collection.jpg" alt="data_collection.jpg" class="text-center" style="width: 100%; max-width: 1100">
+    </div>
+    
+  </div>
+  <p>
+    Overview of data collection for the InterPose dataset. Our framework contains a module for collecting interaction-rich videos (left) and a module for automatic extraction of 3D human motions and corresponding text captions (right).
+  </p>
+  
+  <hr class="new">
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <h4><font color="brown">Action: open</font></h4>
+    </div>
+    <div class="col-xs-6">
+      <h4><font color="brown">Action: stack</font></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <h4><font color="green">Object: box</font></h4>
+    </div>
+    <div class="col-xs-6">
+      <h4><font color="green">Object: box</font></h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      <h4>Text: The person stands next to a motorcycle, opening a small storage compartment on the rear of motorcycle. The person retrieve an object, inspect it briefly.</h4>
+    </div>
+    <div class="col-xs-6">
+      <h4>Text: The person lifts a large cushion and places it on top of a stack of cardboard boxes. The person then adjusts the cushion to ensure it is securely positioned.</h4>
+    </div>
+  </div>
+  <div class="row" style="text-align: center">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-4">
+    <img src="dataset/data1.gif" alt="data1.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-2">
+  </div>
+  <div class="col-xs-4">
+    <img src="dataset/data2.gif" alt="data2.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  </div> 
+
+  <h3>Qualitative Results on Spatial Controllability Tasks</h3>
+  <hr/>
+  
+  <p>
+    <u><a href="https://neu-vi.github.io/omnicontrol/">[1] Xie et al. OmniControl: Control Any Joint at Any Time for Human Motion Generation. ICLR, 2024.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://github.com/EricGuo5513/HumanML3D/">[2] Guo et al. Generating Diverse and Natural 3D Human Motions From Text. CVPR, 2022.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://research.nvidia.com/labs/par/maskedmimic/">[3] Tessler et al. MaskedMimic: Unified Physics-Based Character Control Through Masked Motion Inpainting. SIGGRAPH Asia, 2024.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://amass.is.tue.mpg.de/">[4] Mahmood et al. AMASS: Archive of motion capture as surface shapes. ICCV, 2019.
+    </a></u>
+  </p>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Spatial Controllability of OmniControl <sup>[1]</sup></font></h4>
+  </div> 
+  <div class="row" style="text-align: center">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>OmniControl <sup>[1]</sup> trained on HumanML3D <sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-4">
+      <h4>OmniControl <sup>[1]</sup> trained on InterPose</h4>
+    </div>
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+  <div class="col-xs-4">
+    <img src="spatial_control/ori_omni.gif" alt="ori_omni.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-4">
+    <img src="spatial_control/our_omni.gif" alt="our_omni.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  </div> 
+
+
+  <hr class="new">
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Spatial Controllability of MaskedMimic <sup>[3]</sup></font></h4>
+  </div> 
+
+  <div class="row" style="text-align: center;">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-4">
+      <h4>MaskedMimic <sup>[3]</sup> trained on AMASS <sup>[4]</sup></h4>
+    </div>
+    <div class="col-xs-4">
+      <h4>MaskedMimic <sup>[3]</sup> trained on InterPose</h4>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center; margin-top:10px">
+    <div class="col-xs-2">
+    </div>
+  <div class="col-xs-4">
+    <img src="spatial_control/ori_mask1.gif" alt="ori_mask1.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  <div class="col-xs-4">
+    <img src="spatial_control/our_mask1.gif" alt="our_mask1.gif" class="text-center" style="width: 100%; max-width: 900px">
+  </div>
+  </div> 
+
+<h3>HOI generation in 3D scenes</h3>
+  <hr/>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>User can input waypoints to enable precise control in 3D scenes.</h4>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="1200" preload="auto">
+				<source src="HOI/agent/smallbox.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <hr class="new">
+  
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>We also propose a LLM-based framework to enable automatic planning and generation of contact waypoints.</h4>
+    <h4><font color="red">Text instruction: Pick up the floorlamp and put it between sofa and lamp.</font></h4>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="600" preload="auto">
+				<source src="HOI/agent/floorlamp.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <hr class="new">
+
+  <div class="row" style="text-align: center;">
+  <div class="row" style="text-align: center">
+    </div>
+    <div class="col-xs-6">
+      <h4><font color="red">Text instruction: Two people pick up smalltable, and put it next to the refrigerator.</font></h4>
+    </div>
+    <div class="col-xs-6">
+      <h4><font color="red">Text instruction: Pick up two clothestands, and put them next to table2.</font></h4>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center; margin-top:10px">
+  <div class="col-xs-6">
+    <video id="video" controls width="500" preload="auto">
+				<source src="HOI/agent/multi-person.mp4" type="video/mp4" >
+			</video>
+  </div>
+  <div class="col-xs-6">
+    <video id="video" controls width="500" preload="auto">
+				<source src="HOI/agent/mul-obj.mp4" type="video/mp4" >
+			</video>
+  </div>
+  </div> 
+  
+  
+<h3>Failure cases</h3>
+<hr/>
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4><font color="black">Problem: planner fails to generate the correct waypoints.</font></h4>
+    <h4><font color="red">Text instruction: Two person pick up largetable together, and move it to next to the sofa.</font></h4>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="600" preload="auto">
+				<source src="HOI/agent/failure.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <h4 style="padding-top:0.5em">BibTeX</h4>
+    If you find this work useful for your research, please cite:
+    <div class="card">
+      <div class="card-block">
+        <pre class="card-text clickselect">
+          @article{zhang2025interpose,
+            title={InterPose: Learning to Generate Human-Object Interactions from Large-Scale Web Videos},
+            author={Zhang, Yangsong and Butt, Abdul Ahad and Varol, G{\"u}l and Laptev, Ivan},
+            journal={arXiv},
+            year={2025},
+          }</pre>
+      </div>
+    </div>
+
+  
+  <h3>Acknowledgements</h3>
+  <hr/>
+  <p>
+    We thank helps from public code like <a href='https://github.com/lijiaman/chois_release/'>chois_release</a>, <a href='https://github.com/neu-vi/OmniControl/'>OmniControl</a>, <a href='https://github.com/NVlabs/ProtoMotions/'>ProtoMotions</a>, <a href='https://github.com/yohanshin/WHAM/'>WHAM</a>, <a href='https://github.com/geopavlakos/hamer/'>hamer</a>, <a href='https://github.com/QwenLM/Qwen2.5-VL/'>Qwen2.5-VL</a>, etc.
+  </p>
+</div>
+
+<div class="container" style="padding-top:3rem; padding-bottom:3rem">
+  <p style="text-align:center">
+  &#169; This webpage was in part inspired from this
+  <a href="https://github.com/monniert/project-webpage">template</a>.
+  </p>
+</div>
+
+</body>
+</html> 
