@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PhysMoDPO</title>
+  <meta name="description" content="Project page for PhysMoDPO: Physically-Plausible Humanoid Motion with Preference Optimization">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <meta charset="utf-8">
+
+  <!--Facebook preview-->
+  <meta property="og:image" content="https://mael-zys.github.io/PhysMoDPO/resrc/teaser.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="600">
+  <meta property="og:image:height" content="400">
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mael-zys.github.io/PhysMoDPO/"/>
+  <meta property="og:title" content="PhysMoDPO"/>
+  <meta property="og:description" content="Project page for PhysMoDPO: Physically-Plausible Humanoid Motion with Preference Optimization."/>
+
+  <!--Twitter preview-->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PhysMoDPO" />
+  <meta name="twitter:description" content="Project page for PhysMoDPO: Physically-Plausible Humanoid Motion with Preference Optimization."/>
+  <meta name="twitter:image" content="https://mael-zys.github.io/PhysMoDPO/resrc/teaser.png">
+
+  <!--Style-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container" style="text-align:center; padding:2rem 15px">
+  <div class="row" style="text-align:center">
+    <h1>PhysMoDPO: Physically-Plausible Humanoid Motion </h1>
+    <h1>with Preference Optimization</h1>
+    <h4>arXiv 2026</h4>
+  </div>
+  <div class="row" style="text-align:center">
+    <div class="col-xs-0 col-md-2"></div>
+    <div class="col-xs-14 col-md-14">
+      <h4>
+        <a href="https://Mael-zys.github.io/"><nobr>Yangsong Zhang</nobr><sup>1</sup></a> &emsp;
+        <a href="https://anujithm.github.io/"><nobr>Anujith Muraleedharan</nobr><sup>1</sup></a> &emsp;
+        <a href="https://scholar.google.com/citations?user=Pm32NBYAAAAJ&hl=en"><nobr>Rikhat Akizhanov</nobr><sup>1</sup></a> &emsp;
+        <a href="https://abdulahadbutt.github.io/"><nobr>Abdul Ahad Butt</nobr><sup>1</sup></a> &emsp;
+      </h4>
+      <h4>
+        <a href="https://gulvarol.github.io/"><nobr>Gül Varol</nobr><sup>2</sup></a>&emsp;
+        <a href="https://people.epfl.ch/pascal.fua?lang=en"><nobr>Pascal Fua</nobr><sup>1</sup> </a>&emsp;
+        <a href="https://fabvio.github.io/"><nobr>Fabio Pizzati</nobr><sup>1</sup> </a>&emsp;
+        <a href="https://www.di.ens.fr/~laptev/"><nobr>Ivan Laptev</nobr><sup>1</sup> </a>&emsp;
+      </h4>
+      <sup>1</sup> Mohamed Bin Zayed University of Artificial Intelligence (MBZUAI) &emsp;
+      <sup>2</sup> LIGM, École des Ponts, IP Paris, Univ Gustave Eiffel, CNRS &emsp;
+      <sup>3</sup> École polytechnique fédérale de Lausanne (EPFL) &emsp;
+    </div>
+    
+  </div>
+</div>
+
+<div class="container" style="text-align:center; padding:1rem">
+  <img src="resrc/teaser.png" alt="teaser.png" class="text-center" style="width: 100%; max-width: 1100px">
+  <h3 style="text-align:center; padding-top:1rem">
+    <a class="label label-info" href="https://arxiv.org/abs/2509.00767">Paper</a>
+    <a class="label label-info" href="https://github.com/Mael-zys/PhysMoDPO">GitHub</a>
+  </h3>
+</div>
+
+<div class="container">
+  <h3>Abstract</h3>
+  <hr/>
+  <p>
+  Recent progress in text-conditioned human motion generation has been largely driven by diffusion models trained on large-scale  human motion data. 
+Building on this progress, recent methods attempt to transfer such models for character animation and real robot control by applying a Whole-Body Controller (WBC) that converts diffusion-generated motions into executable trajectories.
+While WBC trajectories become compliant with physics, they may expose substantial deviations from original motion.
+To address this issue, we here propose PhysMoDPO, a Direct Preference Optimization framework.
+Unlike prior work that relies on hand-crafted physics-aware heuristics such as foot-sliding penalties, we integrate WBC into our training pipeline and optimize diffusion model such that the output of WBC becomes compliant both with physics and original text instructions. 
+To train PhysMoDPO we deploy physics-based and task-specific rewards and use them to assign preference to synthesized trajectories.
+Our extensive experiments on text-to-motion and spatial control tasks demonstrate consistent improvements of PhysMoDPO in both physical realism and task-related metrics on simulated robots. Moreover, we demonstrate that PhysMoDPO results in significant improvements when applied to zero-shot motion transfer in simulation and for real-world deployment on a G1 humanoid robot.  
+  </p>
+
+  <h3>Video</h3>
+  <hr/>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="800" preload="auto">
+				<source src="resrc/PhysMoDPO.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <h3>Method overview</h3>
+  <hr/>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-12">
+      <img src="resrc/overview.jpg" alt="overview.jpg" class="text-center" style="width: 100%; max-width: 1100">
+    </div>
+    
+  </div>
+  <p>
+    Overview of PhysMoDPO. Given a conditioning signal (text and optional joint controls), we sample multiple motions X from a pretrained generator.
+    A fixed physics-based tracking policy then projects each sample into a simulated trajectory X'.
+    We compute physics rewards and task rewards on X',
+    construct preference pairs, and finetune the generator with DPO. This generation--finetuning procedure can be iterated.
+  </p>
+  
+  
+
+  <h3>Qualitative Results on SMPL characters</h3>
+  <hr/>
+  
+  <p>
+    <u><a href="https://github.com/EricGuo5513/HumanML3D/">[1] Guo et al. Generating Diverse and Natural 3D Human Motions From Text. CVPR, 2022.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://research.nvidia.com/labs/par/maskedmimic/">[2] Tessler et al. MaskedMimic: Unified Physics-Based Character Control Through Masked Motion Inpainting. SIGGRAPH Asia, 2024.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://zju3dv.github.io/MotionStreamer/">[3] Xiao et al. MotionStreamer: Streaming Motion Generation via Diffusion-based Autoregressive Model in Causal Latent Space. ICCV, 2025.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://neu-vi.github.io/omnicontrol/">[4] Xie et al. OmniControl: Control Any Joint at Any Time for Human Motion Generation. ICLR, 2024.
+    </a></u>
+  </p>
+  <p>
+    <u><a href="https://lijiaman.github.io/projects/omomo/">[5] Li et al. Object Motion Guided Human Motion Synthesis. SIGGRAPH Asia, 2023.
+    </a></u>
+  </p>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Text-to-motion generation on HumanML3D <sup>[1]</sup></font></h4>
+  </div> 
+  <div class="row" style="text-align: center">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-2">
+      <h4>MaskedMimic <sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>MotionStreamer <sup>[3]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>PhysMoDPO </h4>
+    </div>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="800" preload="auto">
+				<source src="visual_comparison/merged_ms.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Text instruction: Figure is stretching or warming up.</font></h4>
+  </div> 
+
+  <hr class="new">
+
+    <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Spatial-text control on HumanML3D <sup>[1]</sup></font></h4>
+  </div> 
+  <div class="row" style="text-align: center">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-2">
+      <h4>MaskedMimic <sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>OmniControl <sup>[4]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>PhysMoDPO </h4>
+    </div>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="800" preload="auto">
+				<source src="visual_comparison/merged_hml3d.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Text instruction: A man steps forward and does a handstand.</font></h4>
+  </div> 
+
+  <hr class="new">
+
+    <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Spatial-text control on OMOMO <sup>[5]</sup></font></h4>
+  </div> 
+  <div class="row" style="text-align: center">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-2">
+      <h4>MaskedMimic <sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>OmniControl <sup>[4]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>PhysMoDPO </h4>
+    </div>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="800" preload="auto">
+				<source src="visual_comparison/merged_omomo.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Text instruction: Lift, move, and put down the small box.</font></h4>
+  </div> 
+
+<h3>Zero-shot transfer on G1 </h3>
+  <hr/>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4>We retarget the generated motion to robot configuration and then run a pretrained motion tracking policy to deploy it.</h4>
+  </div>
+
+  <div class="row" style="text-align: center">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-2">
+      <h4>MaskedMimic <sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>OmniControl <sup>[4]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>PhysMoDPO </h4>
+    </div>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="800" preload="auto">
+				<source src="visual_comparison/merged_g1.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Text instruction: A person brings right elbow to left knee, then left elbow to right knee,stands straight then bends at the knees a few times.</font></h4>
+  </div> 
+
+  <hr class="new">
+
+  <div class="row" style="text-align: center">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-2">
+      <h4>MaskedMimic <sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>OmniControl <sup>[4]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>PhysMoDPO </h4>
+    </div>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="800" preload="auto">
+				<source src="visual_comparison/merged_g1_1.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Text instruction: A person jumps and spins in the air.</font></h4>
+  </div> 
+
+<h3>Zero-shot transfer on H1 </h3>
+  <hr/>
+
+  <div class="row" style="text-align: center">
+  </div>
+  <div class="row" style="text-align: center">
+    <div class="col-xs-2">
+    </div>
+    <div class="col-xs-2">
+      <h4>MaskedMimic <sup>[2]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>OmniControl <sup>[4]</sup></h4>
+    </div>
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+      <h4>PhysMoDPO </h4>
+    </div>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="800" preload="auto">
+				<source src="visual_comparison/merged_h1.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem;">
+    <h4><font color="red">Text instruction: a person is boxing, throwing various combinations and demonstrating fighting footwork.</font></h4>
+  </div> 
+
+<h3>Failure cases</h3>
+<hr/>
+  <div class="row" style="text-align: center; padding-left:1rem; padding-right:1rem; padding-bottom:1rem;">
+    <h4><font color="black">Problem: possibly fail for highly dynamic motion</font></h4>
+    <h4><font color="red">Text instruction: the person jumped and did a twist and landed on their feet.</font></h4>
+  </div>
+  <table align=center width=910px>
+		<center>
+			<video id="video" controls width="600" preload="auto">
+				<source src="visual_comparison/failure.mp4" type="video/mp4" >
+			</video>
+		</center>
+  </table>
+
+  <h4 style="padding-top:0.5em">BibTeX</h4>
+    If you find this work useful for your research, please cite:
+    <div class="card">
+      <div class="card-block">
+        <pre class="card-text clickselect">
+          @article{zhang2026PhysMoDPO,
+            title={PhysMoDPO: Physically-Plausible Humanoid Motion with Preference Optimization},
+            author={Zhang, Yangsong and Muraleedharan, Anujith and Akizhanov, Rikhat and Butt, Abdul Ahad and Varol, G{\"u}l and Fua, Pascal and and Pizzati, Fabio and Laptev, Ivan},
+            journal={arXiv},
+            year={2026},
+          }</pre>
+      </div>
+    </div>
+
+  
+  <h3>Acknowledgements</h3>
+  <hr/>
+  <p>
+    We thank helps from public code like <a href='https://github.com/neu-vi/OmniControl/'>OmniControl</a>, <a href='https://github.com/NVlabs/ProtoMotions/'>ProtoMotions</a>, <a href='https://github.com/zju3dv/MotionStreamer'>MotionStreamer</a>, <a href='https://github.com/nv-tlabs/stmc'>stmc</a>, <a href='https://github.com/HybridRobotics/whole_body_tracking'>BeyondMimic</a>, <a href='https://github.com/NVlabs/HOVER'>HOVER</a>, etc.
+  </p>
+</div>
+
+<div class="container" style="padding-top:3rem; padding-bottom:3rem">
+  <p style="text-align:center">
+  &#169; This webpage was in part inspired from this
+  <a href="https://github.com/monniert/project-webpage">template</a>.
+  </p>
+</div>
+
+</body>
+</html> 
