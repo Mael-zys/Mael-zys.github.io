@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TimelineControl enables streaming 3D human motion generation from newly arriving, independently timed, and overlapping instructions.">
+  <meta name="theme-color" content="#7b1f78">
+  <title>TimelineControl</title>
+  <link rel="icon" type="image/png" href="resrc/teaser.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mael-zys.github.io/TimelineControl/">
+  <meta property="og:title" content="TimelineControl">
+  <meta property="og:description" content="Streaming Multi-Track Timeline Control for 3D Human Motion Generation">
+  <meta property="og:image" content="https://mael-zys.github.io/TimelineControl/resrc/teaser.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1461">
+  <meta property="og:image:height" content="623">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TimelineControl">
+  <meta name="twitter:description" content="Streaming Multi-Track Timeline Control for 3D Human Motion Generation">
+  <meta name="twitter:image" content="https://mael-zys.github.io/TimelineControl/resrc/teaser.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="top-nav" aria-label="Page sections">
+    <div class="nav-inner">
+      <a class="brand" href="#top">TimelineControl</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#applications">Applications</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="top" class="hero page-width">
+    <p class="venue">arXiv 2026</p>
+    <h1>Streaming Multi-Track Timeline Control<br> for 3D Human Motion Generation</h1>
+
+    <div class="authors" aria-label="Authors">
+      <a href="https://mael-zys.github.io/">Yangsong Zhang<sup>1</sup></a>
+      <a href="https://anujithm.github.io/">Anujith Muraleedharan<sup>1</sup></a>
+      <a href="https://scholar.google.com/citations?user=Pm32NBYAAAAJ&amp;hl=en">Rikhat Akizhanov<sup>1</sup></a>
+      <a href="https://gulvarol.github.io/">Gül Varol<sup>2</sup></a>
+      <a href="https://fabvio.github.io/">Fabio Pizzati<sup>1</sup></a>
+      <a href="https://www.di.ens.fr/~laptev/">Ivan Laptev<sup>1</sup></a>
+    </div>
+
+    <div class="affiliations">
+      <span><sup>1</sup> Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)</span>
+      <span><sup>2</sup> LIGM, École des Ponts, IP Paris, Univ Gustave Eiffel, CNRS</span>
+    </div>
+
+    <div class="resource-row" aria-label="Project resources">
+      <span class="resource resource-pending">Paper · Coming soon</span>
+      <span class="resource resource-pending">Code · Coming soon</span>
+      <span class="resource resource-pending">Data &amp; Models · Coming soon</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-width teaser-section" aria-label="Project teaser">
+      <img class="wide-image" src="resrc/teaser.png" alt="TimelineControl teaser showing streaming text control, spatial control, and continuous real-robot execution">
+      <p class="figure-caption">
+        Streaming multi-track motion generation with TimelineControl. (a) Sequential and overlapping body-part instructions. (b) Joint text, root-path, and heading control. (c) Humanoid robot execution. In (a) and (b), body-part colors correspond to instructions.
+      </p>
+    </section>
+
+    <section id="abstract" class="page-width section-block">
+      <h2>Abstract</h2>
+      <div class="section-rule"></div>
+      <p class="abstract-text">
+        Text-driven human motion generation has advanced substantially, yet most methods assume instructions are available before synthesis. Interactive applications require responding to new instructions while continuing ongoing actions, such as answering a phone while walking. Existing approaches address streaming generation or simultaneous composition without explicitly combining streaming instruction arrival with independently timed, overlapping actions. We introduce streaming multi-track timeline control and propose <strong>TimelineControl</strong> to incorporate new instructions alongside ongoing actions. Interval-aware conditioning preserves instruction timing, while causal part-structured representations and part-aware denoising coordinate concurrent actions across body regions. We also construct <strong>TimelineMotion</strong>, a dataset with overlapping instruction intervals and body-part annotations. Experiments on TimelineMotion and MTT demonstrate improved semantic alignment and temporal adherence over evaluated streaming baselines, including models retrained on the same data. Ablations and human evaluations validate our design, complemented by spatial conditioning and humanoid execution demonstrations.
+      </p>
+    </section>
+
+    <section class="page-width section-block">
+      <h2>Video</h2>
+      <div class="section-rule"></div>
+      <div class="video-frame featured-video">
+        <video controls preload="metadata" playsinline>
+          <source src="resrc/TimelineControl.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+
+    <section id="method" class="page-width section-block">
+      <h2>Method Overview</h2>
+      <div class="section-rule"></div>
+      <img class="wide-image method-image" src="resrc/overview.png" alt="Architecture overview of TimelineControl">
+      <p class="figure-caption">
+        Overview of the TimelineControl architecture. We process part features and whole-body features separately (left). The part features undergo block-causal self-attention (yellow). Both use online multi-prompt conditioning (pink, OMPC) to allow for multi-track streaming inference. We add a part bias (orange) to enforce better mapping to body parts. Details (right) show examples of elements used in text
+      </p>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-number">01</span>
+          <h3>Block-causal attention</h3>
+          <p>Motion features interact within the same generation block while future blocks remain masked, enabling causal streaming generation.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">02</span>
+          <h3>Part-aware guidance</h3>
+          <p>A body-part relevance predictor identifies which of the six anatomical regions each instruction should guide.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">03</span>
+          <h3>Multi-track attention</h3>
+          <p>Temporal prompt scores are combined with interval visibility masks, so each motion position attends only to applicable instructions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="results" class="page-width section-block">
+      <h2>Qualitative Comparisons</h2>
+      <div class="section-rule"></div>
+      <p class="section-intro">
+        We compare TimelineControl with streaming and offline composition baselines on two multi-track motion benchmarks. Each video visualizes the instruction timeline together with the generated motion.
+      </p>
+      <div class="reference-list" aria-label="Comparison references">
+        <p id="ref-stmc"><a href="https://mathis.petrovich.fr/stmc/">[1] Petrovich et al. Multi-Track Timeline Control for Text-Driven 3D Human Motion Generation. CVPR Workshop on Human Motion Generation, 2024.</a></p>
+        <p id="ref-actionplan"><a href="https://coral79.github.io/ActionPlan/">[2] Nazarenus et al. ActionPlan: Future-Aware Streaming Motion Synthesis via Frame-Level Action Planning. ECCV, 2026.</a></p>
+      </div>
+      <div class="media-grid two-column">
+        <article class="media-card">
+          <h3 class="comparison-dataset">TimelineMotion</h3>
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted loop>
+              <source src="visual_comparison/Timeline_compare.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="method-labels" aria-label="Compared methods">
+            <span>STMC <sup><a href="#ref-stmc">[1]</a></sup></span>
+            <span>ActionPlan* <sup><a href="#ref-actionplan">[2]</a></sup></span>
+            <span>Ours</span>
+          </div>
+        </article>
+        <article class="media-card">
+          <h3 class="comparison-dataset">MTT</h3>
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted loop>
+              <source src="visual_comparison/MTT_compare.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="method-labels" aria-label="Compared methods">
+            <span>STMC <sup><a href="#ref-stmc">[1]</a></sup></span>
+            <span>ActionPlan* <sup><a href="#ref-actionplan">[2]</a></sup></span>
+            <span>Ours</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="applications" class="page-width section-block">
+      <h2>Applications</h2>
+      <div class="section-rule"></div>
+
+      <div class="subsection-heading">
+        <div>
+          <p class="eyebrow">Online interaction</p>
+          <h3>Interactive Demo</h3>
+        </div>
+      </div>
+      <div class="media-grid single-media">
+        <div class="media-card">
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted loop>
+              <source src="application/interactive_demo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+      <p class="application-caption">New text instructions can arrive during generation and be incorporated alongside compatible ongoing actions.</p>
+
+      <div class="subsection-heading">
+        <div>
+          <p class="eyebrow">Long-horizon generation</p>
+          <h3>Continuous Long Sequence</h3>
+        </div>
+      </div>
+      <div class="media-grid single-media">
+        <div class="media-card">
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted loop>
+              <source src="application/long_sequence.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+      <p class="application-caption">A causal sliding window supports continuous motion across many sequential and overlapping instructions.</p>
+
+      <div class="subsection-heading">
+        <div>
+          <p class="eyebrow">Multimodal guidance</p>
+          <h3>Text + Spatial Control</h3>
+        </div>
+      </div>
+      <div class="media-grid two-column">
+        <div class="media-card">
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted loop>
+              <source src="application/control1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted loop>
+              <source src="application/control2.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+      <p class="application-caption">TimelineControl combines streamed language with root paths, waypoints, heading, body keyframes, end-effector targets, and foot contacts.</p>
+
+      <div class="subsection-heading">
+        <div>
+          <p class="eyebrow">Physical deployment</p>
+          <h3>Real-Robot Execution</h3>
+        </div>
+      </div>
+      <div class="media-grid two-column">
+        <div class="media-card">
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted loop>
+              <source src="application/real_robot1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="video-frame">
+            <video controls preload="metadata" playsinline muted loop>
+              <source src="application/real_robot2.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+      <p class="application-caption">Generated motions are executed on a G1 humanoid in real time through a motion-tracking controller.</p>
+    </section>
+
+    <section class="page-width section-block citation-section">
+      <h2>BibTeX</h2>
+      <div class="section-rule"></div>
+      <p>If you find this work useful, please cite:</p>
+      <pre><code>@article{zhang2026timelinecontrol,
+  title     = {Streaming Multi-Track Timeline Control for 3D Human Motion Generation},
+  author    = {Zhang, Yangsong and Muraleedharan, Anujith and Akizhanov, Rikhat and
+               Varol, G{\"u}l and Pizzati, Fabio and Laptev, Ivan},
+  journal   = {arXiv preprint},
+  year      = {2026}
+}</code></pre>
+    </section>
+
+    <section class="page-width section-block acknowledgement-section">
+      <h2>Acknowledgements</h2>
+      <div class="section-rule"></div>
+      <p>
+        We thank helps from public code like <a href='https://github.com/Coral79/ActionPlan-Code'>ActionPlan</a>, <a href='https://github.com/nv-tlabs/stmc'>STMC</a>, <a href='https://github.com/zju3dv/MotionStreamer'>MotionStreamer</a>, <a href='https://nvlabs.github.io/GEAR-SONIC/'>SONIC</a>, etc.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-width footer-inner">
+      <p>© 2026 TimelineControl authors.</p>
+      <p>Page structure inspired by the <a href="https://github.com/monniert/project-webpage">project webpage template</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
